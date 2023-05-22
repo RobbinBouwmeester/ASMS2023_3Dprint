@@ -1,0 +1,48 @@
+project:
+  type: website
+
+website:
+  title: "ASMS 3D 2023"
+  back-to-top-navigation: true
+  search: false
+
+  navbar:
+    title: false
+    foreground: "#FFFFFF"
+    background: "#6D000F"
+    left:
+      - text: MS
+        url: main.html#category-ms
+      - text: Educational
+        url: main.html#category-educational
+      - text: LC
+        url: main.html#category-lc
+      - text: Labware
+        url: main.html#category-labware
+  
+  #sidebar:
+  #  #style: "floating"
+  #  foreground: "#FFFFFF"
+  #  background: "#6D000F"
+  #  collapse-level: 1
+  #  contents:
+  #    - text: MS
+  #      url: main.html#category-ms
+  #    - text: Educational
+  #      url: main.html#category-educational
+  #    - text: LC
+  #      url: main.html#category-lc
+  #    - text: Labware
+  #      url: main.html#category-labware
+
+format:
+  html:
+    css: "styles.css"
+    #theme: cosmo
+    toc: true
+    toc-depth: 4
+    smooth-scroll: true
+    link-external-icon: false
+    link-external-newwindow: true
+    linkcolor: "#FFFFFF"
+    navbar-bg: "#FFFFFF"

@@ -1,0 +1,59 @@
+body {
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+  }
+  
+  h1 {
+    background-color: rgb(95, 95, 95);
+    color: white;
+  }
+  
+  div {
+    background-color: rgb(95, 95, 95);
+    color: rgb(255, 255, 255);
+  }
+
+  .navbar-container {
+      background-color: #6D000F;
+  }
+  
+  #quarto-content {
+    background-color: rgb(95, 95, 95);
+    color: rgb(95, 95, 95);
+  }
+
+  #quarto-header {
+    background-color: #6D000F;
+}
+
+#quarto-search {
+    background-color: #6D000F;
+}
+
+#navbarCollapse {
+    background-color: #6D000F;
+}
+
+#quarto-search {
+    background-color: #6D000F;
+}
+
+.aa-DetachedSearchButtonIcon {
+    background-color: #6D000F;
+}
+
+.aa-Autocomplete {
+    background-color: #6D000F;
+}
+
+.quarto-navbar-tools {
+    background-color: #6D000F;
+}
+
+.aa-InputWrapper {
+    background-color: white;
+}
+
+.aa-Label {
+    background-color: white;
+}
