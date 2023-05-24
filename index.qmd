@@ -1,0 +1,87 @@
+---
+title: "3D print descriptions"
+jupyter: python3
+---
+
+```{python}
+import os
+import logging
+
+import pandas as pd
+from IPython.display import display, Markdown
+
+logger = logging.getLogger(__name__)
+
+
+def display_3d_print_descriptions(infile):
+    """
+    Displays 3D print descriptions from a given CSV file.
+
+    Args:
+        infile (str): Path to the input CSV file.
+
+    Returns:
+        None
+    """
+    df = pd.read_csv(infile)
+
+    display(Markdown("""
+3D printing, or additive manufacturing, is a fabrication method that creates three-dimensional objects by depositing materials layer-by-layer, based on a digital model. Models can be printed in a wide range of materials, including polymers, metals, and ceramics. The process begins with a 3D CAD model, which is then sliced into thin layers. 3D printers follow these slices, building the object from the bottom up. Advantages of 3D printing include rapid prototyping, customizability, and “unorthodox” geometries difficult to obtain by traditional manufacturing methods.
+
+This exhibit showcases 3D printed mass spectrometer parts, custom laboratory equipment, and instructive teaching aids. The designs with their description are available on this website.
+
+**If using any of these designs in your own work, make sure the material is compatible with the conductivity requirements and environment of the application, including temperature, pressure, and exposure to chemicals or solvents. We hold no responsibility for any harm and/or damage caused by the models on this page.**
+"""))
+
+    unique_categories = set(df["Category"])
+    df.sort_values("Letter in Display, Poster and Website (GitHub)", inplace=True)
+
+    for category in unique_categories:
+        sub_df = df[df["Category"] == category]
+        display(Markdown(f"## Category: {category}\n"))
+
+        for row_idx, row in sub_df.iterrows():
+            try:
+                title_print = row["Title for 3D Print"].lower().replace(" ", "-").rstrip("-")
+            except Exception as e:
+                logger.exception(e)
+
+            letter = row["Letter in Display, Poster and Website (GitHub)"]
+            display(Markdown(f"[{letter} - {title_print}](#{letter})"))
+
+        display(Markdown(f"***"))
+
+        for row_idx, row in sub_df.iterrows():
+            first_name = row["Submitter Name: (First)"]
+            last_name = row["Submitter Name: (Last)"]
+            title_print = row["Title for 3D Print"]
+            affiliation = row["Submitter Affiliation (university, institute, etc)"]
+            description = row["Description of utility or application of the 3D print."]
+            material = row["Description of material, color, method of printing, finishing and assembly."]
+            letter = row["Letter in Display, Poster and Website (GitHub)"]
+            lic = "CC-BY"
+            stl_file = row["stl_file"]
+
+            display(Markdown(f"### {letter} - {title_print}" + "{#" + letter + "}"))
+            display(Markdown(f"#### Author information"))
+            display(Markdown(f"**Submitted by:** {first_name} {last_name}"))
+            display(Markdown(f"**Affiliation:** {affiliation}"))
+            display(Markdown(f"#### 3D structure information"))
+
+            display(Markdown(f"**General description:** {description}"))
+            display(Markdown(f"**Printing remarks:** {material}"))
+            display(Markdown(f"**License:** {lic}"))
+
+            if isinstance(stl_file, str):
+                stl_loc = os.path.join("3d_files", stl_file)
+                display(Markdown(f"**Download:** [Download 3D file]({stl_loc})"))
+                fig_dir = os.path.join("figures", stl_file.replace("stl", "png"))
+                display(Markdown(f"![]({fig_dir} \"{title_print}\")"))
+
+            display(Markdown(f"***"))
+
+
+infile = "3DPrintingSpecialExhibit_Data.csv"
+display_3d_print_descriptions(infile)
+
+```
