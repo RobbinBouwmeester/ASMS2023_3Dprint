@@ -32,18 +32,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Pages
+      - name: Set up Pages
         uses: actions/configure-pages@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.3.353"
 
       - name: Render website
         uses: quarto-dev/quarto-actions/render@v2
-        with:
-          path: ./source-repo
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
           path: '_site'
 
       - name: Deploy to GitHub Pages
