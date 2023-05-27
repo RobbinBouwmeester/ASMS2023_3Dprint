@@ -23,7 +23,7 @@ def display_3d_print_descriptions(infile):
     Returns:
         None
     """
-    df = pd.read_csv(infile)
+    df = pd.read_csv(infile, encoding= 'cp865')
 
     display(Markdown("""
 3D printing, or additive manufacturing, is a fabrication method that creates three-dimensional objects by depositing materials layer-by-layer, based on a digital model. Models can be printed in a wide range of materials, including polymers, metals, and ceramics. The process begins with a 3D CAD model, which is then sliced into thin layers. 3D printers follow these slices, building the object from the bottom up. Advantages of 3D printing include rapid prototyping, customizability, and “unorthodox” geometries difficult to obtain by traditional manufacturing methods.
