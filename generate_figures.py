@@ -1,7 +1,9 @@
 """Generate PNG figures from STL 3D files."""
 
-from glob import glob
-from pathlib import Path
+#from glob import glob
+#from pathlib import Path
+
+import os
 
 import vtk
 
@@ -48,10 +50,10 @@ def stl_to_png(fname, fname_out):
     writer.Write()
 
 
-def generate_figures():
-    for stl_file in glob("3d_files/*.stl"):
-        png_file = Path("figures") / stl_file.with_suffix(".png").name
-        stl_to_png(stl_file, png_file)
+def generate_figures(dir_3d="3d_files/"):
+    for stl_file in os.listdir(dir_3d):
+        png_file = os.path.join("figures",stl_file.replace(".STL",".png").replace(".stl",".png"))
+        stl_to_png(os.path.join(dir_3d,stl_file), png_file)
 
 if __name__ == "__main__":
     generate_figures()
