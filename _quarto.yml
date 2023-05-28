@@ -14,12 +14,10 @@ website:
     left:
       - text: MS
         url: index.html#category-ms
-      - text: Educational
-        url: index.html#category-educational
-      - text: LC
-        url: index.html#category-lc
       - text: Labware
         url: index.html#category-labware
+      - text: Educational
+        url: index.html#category-educational
 
 format:
   html:
